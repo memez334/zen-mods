@@ -1,5 +1,4 @@
 :root:has(#customization-container:not([hidden])) {
-    /* Show flexible space in customiation mode in top buttons, since this mod allows them there */
     #zen-sidebar-top-buttons-customization-target toolbarspring {
         display: flex !important;
     }
@@ -22,17 +21,14 @@
         display: none !important;
     }
     
-    /* Change tab shape to square when collapsed */
     tab:not([zen-essential]) .tab-background {
         min-width: var(--tab-min-width) !important;
     }
     
-    /* Center tab icon */
     .tab-icon-stack > .tab-icon-image {
         margin-inline-start: calc(calc(var(--tab-min-width) + var(--tab-block-margin) * 2 - var(--tab-inline-padding) * 2 - 16px) / 2) !important;
     }
 
-    /* Same design as tabs for New Tab button and other toolbarbuttons */
     #TabsToolbar-customization-target toolbarbutton {
         margin: var(--tab-block-margin) !important;
         padding: 0 calc(var(--tab-inline-padding) - var(--tab-block-margin)) !important;
@@ -49,7 +45,6 @@
         }
     }
     
-    /* Stop New Tab button from increasing the width */
     .zen-workspace-tabs-section {
         width: calc(var(--tab-min-width) + var(--tab-block-margin)) !important;
     }
@@ -64,17 +59,15 @@
     }
 
     @media (not (-moz-bool-pref: "zen.view.use-single-toolbar")) {
+        #navigator-toolbox {
+            margin-top: var(--zen-toolbar-height) !important;
+        }
 
-            #navigator-toolbox {
-                margin-top: var(--zen-toolbar-height) !important;
-            }
-
-            #browser:has(#PersonalToolbar[collapsed=false]) #navigator-toolbox {
-                margin-top: calc(var(--zen-toolbar-height) + 2.2em) !important;
-            }
+        #browser:has(#PersonalToolbar[collapsed=false]) #navigator-toolbox {
+            margin-top: calc(var(--zen-toolbar-height) + 2.2em) !important;
+        }
     }
     
-    /* Move topbar buttons in the now empty space */
     @media (not (-moz-bool-pref: "zen.view.use-single-toolbar")) and (not (-moz-platform: macos)) {
         #browser:has(#navigator-toolbox:not([zen-right-side="true"])) {
             #zen-appcontent-wrapper {
@@ -99,10 +92,6 @@
         min-width: var(--zen-toolbox-max-width) !important;
         position: relative !important;
 
-        /* 
-        I have no idea how to replicate the browser background, I don't know where the colors come from, the computed values in the inspector don't match anything on screen.
-        This is as close as I was able to get so far.
-        */
         &::before {
             position: absolute;
             content: "";
@@ -139,7 +128,6 @@
         }
     }
     
-    /* Essentials */
     #zen-essentials-container {
         display: flex !important;
         justify-content: center !important;
@@ -148,7 +136,6 @@
         
         > .tabbrowser-tab {
             flex: 1 !important;
-            /* Todo change this from hardcoded value */
             min-width: 40px !important;
             margin-inline: calc(var(--zen-toolbox-padding) - 2px) !important;
             transition: flex-grow var(--theme-sidebar_expand_on_hover-transition_speed) linear, 
@@ -157,7 +144,6 @@
         }
     }
     
-    /* Hide empty top buttons */
     #zen-sidebar-top-buttons:not(:has(:not(#zen-sidebar-top-buttons-separator, #zen-sidebar-top-buttons-customization-target))) {
         display: none !important;
     }
@@ -209,13 +195,11 @@
     #tabbrowser-arrowscrollbox-periphery {
         margin-inline: 0 !important;
         
-        /* Decrease the seperator line to the same length as before */
         &::before {
             margin-inline: var(--tab-block-margin);
         }
     }
 
-    /* Expanded bar */
     #navigator-toolbox:is(
         [zen-has-hover],
         [movingtab],
@@ -231,7 +215,6 @@
         }
     }
 
-    /* Collapsed bar */
     #navigator-toolbox:not(
         [zen-has-hover],
         [movingtab],
@@ -240,8 +223,6 @@
         :has(.tabbrowser-tab:active),
         :has(toolbarbutton[open="true"]:not(#zen-sidepanel-button), #urlbar[open])
     ) {
-
-        /* Show only active/first/no(todo) button*/
         #zen-workspaces-button {
             toolbarbutton:not([active="true"]) {
                 flex-grow: 0 !important;
@@ -265,7 +246,6 @@
             margin-inline: 0 !important;
         }
         
-        /*Workaround for invisible top buttons seperator*/
         #zen-sidebar-top-buttons-customization-target > :not(:nth-child(1 of toolbarbutton, toolbaritem))
         {
             flex-grow: 0 !important;
@@ -285,9 +265,7 @@
         }
 
         @media (-moz-bool-pref: "theme.sidebar_expand_on_hover.collapse_buttons") {
-            /* Show first child only when no visible workspace switcher */
             #zen-sidebar-bottom-buttons:not(:has(#zen-workspaces-button:not([dont-show="true"]))) > :not(:first-child),
-            /* Show active workspace only when visible workspace switcher */
             #zen-sidebar-bottom-buttons:has(#zen-workspaces-button:not([dont-show="true"])) > :not(#zen-workspaces-button) {
                 flex-grow: 0 !important;
                 width: 0 !important;
@@ -297,7 +275,6 @@
         }
     }
 
-    /* Support for tabs on the right */
     #navigator-toolbox[zen-right-side="true"] {
         direction: rtl !important;
     
